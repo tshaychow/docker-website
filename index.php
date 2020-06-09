@@ -6,10 +6,17 @@
     <body>
         <h2> 
             <?php   
-                $json = file_get_contents('ser-services');
-                $obj = json_decode($json);
-                $amount = $obj->output;
-                echo  $amount;
+
+
+
+                $ch = curl_init();
+                curl_setopt($ch, CURLOPT_URL, 'ser-services');
+                curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+                $output = curl_exec($ch);
+                curl_close($ch);     
+                echo $output;
+
+               
             ?>    
         </h2> 
     </body>
